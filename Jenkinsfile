@@ -21,7 +21,7 @@ pipeline {
             }
 
             steps {
-                sh 'dep deploy dev -vv'
+                sh 'dep deploy prod -vv'
             }
         }
     }

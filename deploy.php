@@ -175,6 +175,14 @@ task('deploy:public_disk', function () {
     run('{{bin/symlink}} {{deploy_path}}/shared/storage/app/public {{release_path}}/public/storage');
 });
 
+localhost()
+    ->stage('prod')
+    ->user('root')
+    ->set('branch', 'master')
+    ->set('composer', '/usr/local/bin/composer')
+    ->set('composer_options', 'install --verbose --no-progress --no-interaction --optimize-autoloader')
+    ->set('deploy_path', '/var/www/uml/backend');
+
 host('213.226.124.77')
     ->stage('dev')
     ->user('root')
