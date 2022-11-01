@@ -181,7 +181,7 @@ host('213.226.124.77')
     ->set('branch', 'master')
     ->set('composer', '/usr/local/bin/composer')
     ->set('composer_options', 'install --verbose --no-progress --no-interaction --optimize-autoloader')
-    ->set('deploy_path', '/var/www/html');
+    ->set('deploy_path', '/var/www/uml/backend');
 
 desc('Перезагрузка PHP-FPM');
 task('fpm:restart', 'sudo /etc/init.d/php8.1-fpm restart');
