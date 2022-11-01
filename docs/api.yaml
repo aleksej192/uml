@@ -1,0 +1,74 @@
+openapi: 3.0.0
+servers:
+  - url: http://backend.uml.1086129-cj97557.tmweb.ru/
+    description: Сервер backend
+info:
+  title: Документация API
+  version: 1.0.0
+paths:
+  /api/register:
+    post:
+      tags:
+        - Пользователь
+      summary: Регистрация
+      responses:
+        200:
+          description: Успешная регистрация
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: boolean
+                        description: id
+                        example: true
+                      token:
+                        type: string
+                        description: Bearer Token
+                        example: 2|Mgqw64w6xS38lGaRIPohioVw316iX3sTxbWOwCcP
+  /api/login:
+    post:
+      tags:
+        - Пользователь
+      summary: Аутентификация
+      responses:
+        200:
+          description: Успешная аутентификация
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: boolean
+                        description: id
+                        example: true
+                      token:
+                        type: string
+                        description: Bearer Token
+                        example: 2|Mgqw64w6xS38lGaRIPohioVw316iX3sTxbWOwCcP
+
+        404:
+          description: Пользователь не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: boolean
+                        description: id
+                        example: true
+                      message:
+                        type: string
+                        example: User not found
