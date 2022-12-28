@@ -2,58 +2,89 @@ openapi: 3.0.0
 servers:
   - url: http://backend.uml.1086129-cj97557.tmweb.ru/
     description: Сервер backend
+
 info:
   title: Документация API
   version: 1.0.0
+
+components:
+  schemas:
+    LoginResource:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            status:
+              type: boolean
+              description: Статус
+              example: true
+            token:
+              type: string
+              description: Токен
+              example: 21|ktCKLiwuflojWf6AkVNoxv6UFx5mJyp987Y4Xzo1
+            user:
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: Логин пользователя
+                  example: Логин
+
 paths:
   /api/register:
     post:
       tags:
         - Пользователь
       summary: Регистрация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: Логин
+                  example: login
+                password:
+                  type: string
+                  description: Пароль
+                  example: password
       responses:
         200:
           description: Успешная регистрация
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      status:
-                        type: boolean
-                        description: id
-                        example: true
-                      token:
-                        type: string
-                        description: Bearer Token
-                        example: 2|Mgqw64w6xS38lGaRIPohioVw316iX3sTxbWOwCcP
+                $ref: '#/components/schemas/LoginResource'
+
   /api/login:
     post:
       tags:
         - Пользователь
       summary: Аутентификация
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: Логин
+                  example: login
+                password:
+                  type: string
+                  description: Пароль
+                  example: password
       responses:
         200:
           description: Успешная аутентификация
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      status:
-                        type: boolean
-                        description: id
-                        example: true
-                      token:
-                        type: string
-                        description: Bearer Token
-                        example: 2|Mgqw64w6xS38lGaRIPohioVw316iX3sTxbWOwCcP
+                $ref: '#/components/schemas/LoginResource'
 
         404:
           description: Пользователь не найден
