@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Project\CreateProjectRequest;
+use App\Http\Requests\Api\Project\ImportProjectRequest;
 use App\Http\Requests\Api\Project\UpdateProjectNameRequest;
 use App\Http\Requests\Api\Project\UpdateProjectSchemaRequest;
 use App\Http\Resources\Api\Project\ProjectListResource;
 use App\Http\Resources\Api\Project\ProjectResource;
 use App\Models\Project;
 use App\Models\User;
+use App\UseCases\Project\Commands\ImportProjectCommand;
+use App\UseCases\Project\Handlers\ImportProjectHandler;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +34,19 @@ class ProjectController extends Controller
 
         /** @var Project $project */
         $project = $user->projects()->create($request->validated());
+
+        return new ProjectResource($project);
+    }
+
+    public function import(ImportProjectRequest $request, ImportProjectHandler $importProjectHandler): JsonResource
+    {
+        $command = new ImportProjectCommand(
+            $request->user(),
+            $request->get('name'),
+            $request->file('files'),
+        );
+
+        $project = $importProjectHandler($command);
 
         return new ProjectResource($project);
     }

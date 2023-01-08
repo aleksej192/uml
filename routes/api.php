@@ -10,6 +10,7 @@ Route::post('/login', [UserController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('project', [ProjectController::class, 'index']);
     Route::post('project', [ProjectController::class, 'store']);
+    Route::post('project/import', [ProjectController::class, 'import']);
     Route::get('project/{project}', [ProjectController::class, 'show']);
     Route::patch('project/{project}/name', [ProjectController::class, 'updateName']);
     Route::patch('project/{project}/schema', [ProjectController::class, 'updateSchema']);
