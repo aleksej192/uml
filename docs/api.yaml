@@ -31,6 +31,32 @@ components:
                   description: Логин пользователя
                   example: Логин
 
+    ProjectResource:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: ID проекта
+              example: 3
+            name:
+              type: string
+              description: Имя проекта
+              example: Проект
+            import_status:
+              type: string
+              nullable: true
+              enum:
+                - in_progress
+                - complete
+              description: Статус импорта проекта (null, если проект не импортировался)
+            schema:
+              type: string
+              description: json схема
+              example: []
+
 paths:
   /api/register:
     post:
@@ -103,3 +129,30 @@ paths:
                       message:
                         type: string
                         example: User not found
+
+  /project/import:
+    post:
+      tags:
+        - Проекты
+      summary: Импорт проекта
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  description: Массив файлов для импорта
+                  example: []
+                name:
+                  type: string
+                  description: Имя проекта
+                  example: Проект
+      responses:
+        200:
+          description: Успешная регистрация
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectResource'

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a90a89e8e872849ca097ec332863f105",
+    "content-hash": "d30fba0595af0d632b560bf19e69cdfa",
     "packages": [
         {
             "name": "brick/math",
@@ -2178,6 +2178,31 @@
                 }
             ],
             "time": "2022-07-30T15:51:26+00:00"
+        },
+        {
+            "name": "phuml/phuml",
+            "version": "dev-characterization-tests",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MontealegreLuis/phuml.git",
+                "reference": "3d0394ef421b1f7a483f70f3c9b69f79117b70ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MontealegreLuis/phuml/zipball/3d0394ef421b1f7a483f70f3c9b69f79117b70ef",
+                "reference": "3d0394ef421b1f7a483f70f3c9b69f79117b70ef",
+                "shasum": ""
+            },
+            "require-dev": {
+                "lupka/phpunit-compare-images": "^1.0",
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "support": {
+                "source": "https://github.com/MontealegreLuis/phuml/tree/characterization-tests"
+            },
+            "time": "2017-12-07T15:40:19+00:00"
         },
         {
             "name": "psr/container",
